@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using Castle.Core.Interceptor;
+using Castle.DynamicProxy;
 
 namespace Awesome
 {
@@ -14,6 +10,11 @@ namespace Awesome
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public IComparable ProxyMe(ProxyGenerator generator, IInterceptor interceptor)
+        {
+            return generator.CreateInterfaceProxyWithoutTarget<IComparable>(interceptor);
         }
     }
 }
